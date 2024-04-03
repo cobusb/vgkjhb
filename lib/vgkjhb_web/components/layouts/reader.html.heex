@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" style="scrollbar-gutter: stable;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title suffix=" · Sandpiper">
+      <%= assigns[:page_title] || "VGK Jhb" %>
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+  <body>
+        <div class="sticky top-0 left-0 z-10 w-full bg-white" >
+          <button onclick="history.back()" class="m-4 whitespace-nowrap font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span><span aria-hidden="true">&larr;</span>Terug</button>
+        </div>
+        <div class="sticky top-10 left-0 z-10 h-20 w-full bg-white">
+          <.form phx-change="validate">
+            <div class="flex justify-center items-center">
+              <input type="range" id="reader_progress" value="1" name="reader_progress" min="1" max="52" class="w-2/3" phx-debounce="300" phx-change="sliding"/>
+              <input type="hidden" id="reader_state" >
+            </div>
+          </.form>
+        </div>
+    <div id="content">
+        <%= @inner_content %>
+    </div>
+  </body>
+</html>
